@@ -1,0 +1,37 @@
+name: fastapi-azure-deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: deploy to azure vm
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            set -e
+
+            cd ~
+            if [ ! -d "fastapi-azure" ]; then
+              git clone https://github.com/<your-username>/<repo-name>.git fastapi-azure
+            fi
+
+            cd fastapi-azure
+            git pull origin main
+
+            if [ ! -d ".venv" ]; then
+              uv venv
+            fi
+
+            uv sync
+
+            sudo systemctl restart fastapi
