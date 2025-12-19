@@ -22,7 +22,7 @@ jobs:
 
             cd ~
             if [ ! -d "fastapi-azure" ]; then
-              git clone https://github.com/<your-username>/<repo-name>.git fastapi-azure
+              git clone https://github.com/DR-FREKE/fastapi-azure.git fastapi-azure
             fi
 
             cd fastapi-azure
