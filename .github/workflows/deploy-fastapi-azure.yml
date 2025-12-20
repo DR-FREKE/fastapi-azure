@@ -28,12 +28,4 @@ jobs:
               # Go to your project directory
               cd ~/fastapi-azure
 
-              # Pull latest code
-              git pull origin main
 
-              # Load aliases from bashrc
-              source ~/.bashrc
-
-              # Activate venv and start FastAPI
-              activate_venv
-          EOF
