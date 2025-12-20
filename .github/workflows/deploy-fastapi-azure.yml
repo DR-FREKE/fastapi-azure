@@ -32,7 +32,7 @@ jobs:
               if [ ! -d ".venv" ]; then
                 uv venv
               fi
-
+              source .venv/bin/activate
               ~/.local/bin/uv sync
 
               sudo systemctl restart fastapi
