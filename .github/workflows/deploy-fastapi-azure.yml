@@ -25,7 +25,15 @@ jobs:
             ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'EOF'
               set -e
 
-              # Go to your project directory
               cd ~/fastapi-azure
 
+              git pull origin main
 
+              if [ ! -d ".venv" ]; then
+                uv venv
+              fi
+
+              ~/.local/bin/uv sync
+
+              sudo systemctl restart fastapi
+          EOF
