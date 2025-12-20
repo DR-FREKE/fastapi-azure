@@ -19,22 +19,3 @@ jobs:
           echo "${{ secrets.VM_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy to Azure VM
-        run: |
-          ssh -i ~/.ssh/id_ed25519 \
-            ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'EOF'
-              set -e
-
-              # Go to your project directory
-              cd ~/fastapi-azure
-
-              # Pull latest code
-              git pull origin main
-
-              # Load aliases from bashrc
-              source ~/.bashrc
-
-              # Activate venv and start FastAPI
-              activate_venv
-          EOF
