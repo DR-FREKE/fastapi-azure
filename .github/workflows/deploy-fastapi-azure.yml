@@ -30,7 +30,7 @@ jobs:
               git pull origin main
 
               if [ ! -d ".venv" ]; then
-                uv venv
+                ~/.local/bin/uv venv
               fi
               source .venv/bin/activate
               ~/.local/bin/uv sync
